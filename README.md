@@ -108,3 +108,146 @@ Test the program with:
 - Different network conditions
 
 
+
+## Architecture
+
+The program is divided into several components, each responsible for a specific part of the ping process.
+
+```text
+                         ft_ping
+                            │
+                            ▼
+                    Command-line parsing
+                            │
+                            ▼
+                  Hostname / IPv4 resolution
+                            │
+                            ▼
+                     Raw ICMP socket
+                            │
+                 ┌──────────┴──────────┐
+                 ▼                     ▼
+          ICMP Echo Request       Receive packet
+                 │                     │
+                 ▼                     ▼
+              sendto()              recvfrom()
+                 │                     │
+                 └──────────┬──────────┘
+                            ▼
+                    Parse ICMP response
+                            │
+                            ▼
+                    Validate the packet
+                            │
+                 ┌──────────┴──────────┐
+                 ▼                     ▼
+             Valid reply          ICMP error
+                 │                     │
+                 ▼                     ▼
+            Calculate RTT         Handle / display
+                 │
+                 ▼
+              Display
+                 │
+                 ▼
+             Statistics
+             
+             
+             
+Main Components
+Command-Line Parsing
+
+Responsible for:
+
+Parsing the program arguments.
+Handling the mandatory -v and -? options.
+Validating the destination argument.
+Address Resolution
+
+Responsible for:
+
+Accepting IPv4 addresses.
+Resolving hostnames and FQDNs.
+Preparing the destination sockaddr_in structure.
+Raw Socket
+
+The program uses an IPv4 raw socket with the ICMP protocol:
+
+socket(AF_INET, SOCK_RAW, IPPROTO_ICMP);
+
+Raw sockets allow ft_ping to construct and send ICMP packets directly.
+
+ICMP Packet
+
+The ICMP Echo Request contains:
+
+Type
+Code
+Checksum
+Identifier
+Sequence number
+Payload
+
+The program calculates the checksum before sending the packet.
+
+Packet Reception
+
+The program waits for incoming packets using recvfrom().
+
+Received packets are inspected to determine whether they contain:
+
+The expected ICMP Echo Reply.
+An ICMP error message.
+An unrelated packet.
+
+Only the appropriate response is associated with the request sent by ft_ping.
+
+RTT Measurement
+
+The Round-Trip Time is measured by recording timestamps around the packet transmission:
+
+Timestamp 1
+    │
+    ├── send ICMP Echo Request
+    │
+    ├── network round trip
+    │
+    └── receive ICMP Echo Reply
+          │
+          ▼
+      Timestamp 2
+
+RTT = Timestamp 2 - Timestamp 1
+Signal Handling
+
+SIGINT is handled to allow the user to terminate the program with:
+
+Ctrl+C
+
+The program then stops sending packets and displays the final statistics.
+
+Statistics
+
+At termination, the program displays information such as:
+
+Packets transmitted
+Packets received
+Packet loss
+Total elapsed time
+RTT statistics
+Project Structure
+ft_ping/
+├── Makefile
+├── README.md
+├── includes/
+│   └── ft_ping.h
+└── src/
+    ├── main.c
+    ├── ping.c
+    ├── packet.c
+    ├── resolve.c
+    ├── display.c
+    └── utils.c
+
+The source files are separated by responsibility to keep the project modular and easier to maintain and debug.
+
