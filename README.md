@@ -268,7 +268,7 @@ The source files are separated by responsibility to keep the project modular and
 
 ```
 ATTENTION: Program in C, all libC is authorised, using the system
-*ping* or the sources of a standard ping in any way is *forbidden*.
+**`ping`** or the sources of a standard ping in any way is **`forbidden`**.
 ```
 
 
