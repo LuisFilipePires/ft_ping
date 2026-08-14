@@ -1,4 +1,5 @@
 # ft_ping
+
 build your own ping command
 
 
@@ -30,8 +31,9 @@ build your own ping command
                     ▼
               RTT / TTL
               
+
 <details>
-<summary>Project Architecture & Development Plan<\summary>
+<summary>Project Architecture & Development Plan</summary>
 
 ## Development Steps
 
@@ -154,8 +156,7 @@ The program is divided into several components, each responsible for a specific 
                  │
                  ▼
              Statistics
-             
-             
+
              
 Main Components
 Command-Line Parsing
@@ -253,6 +254,8 @@ ft_ping/
     └── utils.c
 
 The source files are separated by responsibility to keep the project modular and easier to maintain and debug.
+```
+
 <\details>
 
 # 1 - Installed a minimal Debian 13.6.0 with the required packages and no graphical interface.
