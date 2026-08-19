@@ -273,4 +273,48 @@ ATTENTION: Program in C, all libC is authorised, using the system
 
 
 
+<details>
+<summary>ICMP</summary>
+
+ref: https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol
+
+ICMP (Internet Control Message Protocol) is a network protocol used to send error messages and diagnostic information between devices. It is commonly used by tools such as ping and traceroute.
+
+| Header IP | Message ICMP |
+|-----------|--------------|
+| datagram  IP | 
+
+
+
+| Type (8 bits) | Code (8 bits) | Checksum (16 bits) |
+|-----------|--------------|
+| Message content (variable)| 
+
+</details>
+
+
+<details>
+<summary>Code</summary>
+
+### parsing
+
+getopt (without "_long")  for smal options like -h, -v.
+
+*used: getopt_long watchs small (-h) and long options (--help), its GNU style.
+
+```
+signature
+
+int getopt_long(int argc, char * const argv[],
+                 const char *optstring,
+                 const struct option *longopts, int *longindex);
+
+```
+
+
+
+
+
+</details>
+
  
