@@ -265,6 +265,26 @@ The source files are separated by responsibility to keep the project modular and
 - gdb
 - git
 - openssh-server
+- tmux (for multi windows)
+
+tmux commands
+
+ctr + b -> c (creats a new window)
+
+[0] 0:bash* 1:bash- 2:bash
+
+ctr + b -> 2  (select window 2, * show actived window)
+
+ctr + b ->  % (split verticaly)
+ctr + b - > " (split horizontal)
+
+ctr + b -> d  (detached, exit without close all)
+
+tmux attach
+
+tmux atach-session
+
+
 
 ```
 ATTENTION: Program in C, all libC is authorised, using the system
