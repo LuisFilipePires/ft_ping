@@ -280,15 +280,27 @@ ref: https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol
 
 ICMP (Internet Control Message Protocol) is a network protocol used to send error messages and diagnostic information between devices. It is commonly used by tools such as ping and traceroute.
 
-| Header IP | Message ICMP |
-|-----------|--------------|
-| datagram  IP | 
+<table>
+<tr>
+<th>Header IP</th>
+<th>Message ICMP</th>
+</tr>
+<tr>
+<td colspan="2">Datagram IP</td>
+</tr>
+</table>
 
 
-
-| Type (8 bits) | Code (8 bits) | Checksum (16 bits) |
-|-----------|--------------|
-| Message content (variable)| 
+<table>
+<tr>
+<th> Type (8 bits) </th>
+<th> Code (8 bits) </th>
+<th> Checksum (16 bits) </th>
+</tr>
+<tr>
+<td colspan="3"> Message content (variable)</td> 
+</tr>
+</table>
 
 </details>
 
